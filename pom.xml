@@ -5,7 +5,7 @@
 
     <groupId>org.kwrench</groupId>
     <artifactId>kwrench</artifactId>
-    <version>0.2.1</version>
+    <version>0.2.2</version>
     <packaging>jar</packaging>
 
     <name>KWrench</name>
