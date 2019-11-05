@@ -422,3 +422,24 @@ data class RowAndColumn(val row: Int,
         return "(${row + 1}:${column + 1})"
     }
 }
+
+/**
+ * Return this string with the given [prefixToAdd] added to the start.
+ * @param skipIfAlreadyPresent if true, will only add the prefix if it isn't already present
+ *        (set [ignoreCase] to true if case should be ignored when checking for this).
+ */
+fun String.prefix(prefixToAdd: String, skipIfAlreadyPresent: Boolean = false, ignoreCase: Boolean = false): String {
+    return if (skipIfAlreadyPresent && this.startsWith(prefixToAdd, ignoreCase)) this
+           else prefixToAdd + this
+}
+
+/**
+ * Return this string with the given [suffixToAdd] added to the end.
+ * @param skipIfAlreadyPresent if true, will only add the suffix if it isn't already present
+ *        (set [ignoreCase] to true if case should be ignored when checking for this).
+ */
+fun String.suffix(suffixToAdd: String, skipIfAlreadyPresent: Boolean = false, ignoreCase: Boolean = false): String {
+    return if (skipIfAlreadyPresent && this.endsWith(suffixToAdd, ignoreCase)) this
+           else this + suffixToAdd
+}
+

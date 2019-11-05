@@ -1,13 +1,8 @@
 package org.kwrench.files
 
 import java.util.*
-import java.io.IOException
-import java.io.FileInputStream
-import java.io.BufferedInputStream
-import java.io.FileOutputStream
-import java.io.BufferedOutputStream
-import java.io.File
-
+import java.nio.charset.Charset
+import java.io.*
 
 
 /**
@@ -80,6 +75,26 @@ fun <K, V> File.recursivelyMapFiles(
     }
 
     return map
+}
+
+
+
+/**
+ * Saves the given text to this file, using a temp file as a temporary initial storage.
+ * Checks that the text written to the file matches with the text in memory before deleting the original file
+ * and replacing it with the temporary file.
+ *
+ * @param text text to save
+ * @param tempFile temporary file to first save data to.  If not specified, a tempFile with the same name as the
+ * file except ".temp" appended will be used (or .temp and a number, if there is already a file ending in .temp).
+ * @param charset the character encoding to use, defaults to UTF 8.
+ * @throws IOException if there was some problem at any step when saving the data or verifying the saved data.
+ */
+@Throws(IOException::class)
+fun File.saveAndCheck(text: String,
+                      tempFile: File = this.temporaryFileName(),
+                      charset: Charset = Charsets.UTF_8) {
+    this.saveAndCheck(text.toByteArray(charset), tempFile)
 }
 
 
@@ -169,4 +184,5 @@ inline fun ioCheck(value: Boolean, lazyMessage: () -> Any): Unit {
         throw IOException(message.toString())
     }
 }
+
 
