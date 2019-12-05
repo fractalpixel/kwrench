@@ -89,16 +89,11 @@ interface Int2 {
 
 
     /**
-     * Get an index for the specified grid pos, assuming grid cells stored in a one dimensional array,
-     * with z major, x minor order, or null if the specified position is outside this volume
+     * Treat this as a position in a 2D integer area, return an index in a one dimensional array assuming grid cells
+     * are stored with y major, x minor order.  Returns null if the specified position is outside this area.
      */
-    fun toIndex(gridPos: Int2, gridSize: Int2): Int? {
-        if (gridPos.x in 0 .. gridSize.x-1 &&
-            gridPos.y in 0 .. gridSize.y-1) {
-            return gridPos.y * gridSize.x +
-                   gridPos.x
-        }
-        else return null
+    fun toIndex(areaSize: Int2): Int? {
+        return if (inRange(areaSize)) y * areaSize.x + x else null
     }
 
 

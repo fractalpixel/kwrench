@@ -3,6 +3,7 @@ package org.kwrench.geometry.int3
 import org.kwrench.geometry.double2.MutableDouble2
 import org.kwrench.geometry.double3.Double3
 import org.kwrench.geometry.double3.MutableDouble3
+import org.kwrench.geometry.int2.Int2
 import org.kwrench.geometry.int2.MutableInt2
 
 
@@ -96,20 +97,20 @@ interface Int3 {
     fun toDouble2(): MutableDouble2 = MutableDouble2(x.toDouble(), y.toDouble())
     fun toDouble3(): MutableDouble3 = MutableDouble3(x.toDouble(), y.toDouble(), z.toDouble())
 
+
     /**
-     * Get an index for the specified grid pos, assuming grid cells stored in a one dimensional array,
-     * with z major, x minor order, or null if the specified position is outside this volume
+     * Treat this as a position in a 3D integer volume, return an index in a one dimensional array assuming grid cells
+     * are stored with z major, x minor order.  Returns null if the specified position is outside this volume.
      */
-    fun toIndex(gridPos: Int3, gridSize: Int3): Int? {
-        if (gridPos.x in 0 .. gridSize.x-1 &&
-            gridPos.y in 0 .. gridSize.y-1 &&
-            gridPos.z in 0 .. gridSize.z-1) {
-            return gridPos.z * gridSize.x * gridSize.y +
-                   gridPos.y * gridSize.x +
-                   gridPos.x
+    fun toIndex(volumeSize: Int3): Int? {
+        return if (inRange(volumeSize)) {
+            z * volumeSize.x * volumeSize.y +
+            y * volumeSize.x +
+            x
         }
-        else return null
+        else null
     }
+
 
     companion object {
         val ZEROES = ImmutableInt3(0, 0, 0)

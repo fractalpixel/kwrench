@@ -182,13 +182,12 @@ interface IntVolume {
      * Get an index for the specified grid pos, assuming this volume corresponds to grid cells stored in a one dimensional array,
      * with z major, x minor order, or null if the specified position is outside this volume
      */
-    fun toIndex(gridPos: Int3): Int? {
-        if (contains(gridPos)) {
-            return gridPos.z * sizeX * sizeY +
-                   gridPos.y * sizeX +
-                   gridPos.x
-        }
-        else return null
+    fun getIndex(gridPos: Int3): Int? {
+        return if (contains(gridPos)) {
+            gridPos.z * sizeX * sizeY +
+            gridPos.y * sizeX +
+            gridPos.x
+        } else null
     }
 
     /**
