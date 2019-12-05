@@ -5,7 +5,7 @@
 
     <groupId>org.kwrench</groupId>
     <artifactId>kwrench</artifactId>
-    <version>0.2.4</version>
+    <version>0.2.5</version>
     <packaging>jar</packaging>
 
     <name>KWrench</name>
@@ -61,12 +61,13 @@
             <version>5.0.4</version>
         </dependency>
 
-        <!-- TornadoFX UI -->
+        <!-- TornadoFX UI - - >
         <dependency>
             <groupId>no.tornado</groupId>
             <artifactId>tornadofx</artifactId>
             <version>1.7.17</version>
         </dependency>
+        -->
 
         <!-- Additional UI controls -->
         <dependency>

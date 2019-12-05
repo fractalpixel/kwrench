@@ -34,7 +34,7 @@ fun getResourceAsString(resourcePath: String, charset: Charset = Charsets.UTF_8)
 fun getResourceAsBytes(resourcePath: String): ByteArray {
     val resourceStream = getResourceAsStream(resourcePath)
     try {
-        return resourceStream.readAllBytes() // Does not close the stream
+        return resourceStream.readBytes() // Does not close the stream
     } catch (e: IOException) {
         throw IOException("Could not read resource at '$resourcePath': " + e.message, e)
     } finally {
