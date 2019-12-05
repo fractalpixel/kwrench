@@ -184,9 +184,9 @@ interface IntVolume {
      */
     fun getIndex(gridPos: Int3): Int? {
         return if (contains(gridPos)) {
-            gridPos.z * sizeX * sizeY +
-            gridPos.y * sizeX +
-            gridPos.x
+            (gridPos.z - minZ) * sizeX * sizeY +
+            (gridPos.y - minY) * sizeX +
+            (gridPos.x - minX)
         } else null
     }
 
