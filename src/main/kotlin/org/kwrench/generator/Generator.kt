@@ -7,6 +7,7 @@ import org.kwrench.symbol.Symbol
 /**
  * Creates random objects of the specified type.
  */
+// TODO: Replace map with a context interface that allows querying values?
 interface Generator<T: Any>: RandomEntries<T> {
 
     /**
