@@ -1,14 +1,22 @@
 package org.kwrench.generator
 
+import org.kwrench.classes.toNumberOfType
 import org.kwrench.collections.RandomEntries
 import org.kwrench.random.Rand
 import org.kwrench.symbol.Symbol
+import java.lang.IllegalStateException
+import kotlin.reflect.KClass
+import kotlin.reflect.full.isSubclassOf
 
 /**
  * Creates random objects of the specified type.
  */
-// TODO: Replace map with a context interface that allows querying values?
 interface Generator<T: Any>: RandomEntries<T> {
+
+    /**
+     * Type of result that this generator produces.
+     */
+    val type: KClass<T>
 
     /**
      * Generates several random instances.  Each uses a separate random number generator (so the state of random
@@ -37,4 +45,6 @@ interface Generator<T: Any>: RandomEntries<T> {
     fun generate(random: Rand, parameters: Map<Symbol, Any>? = null): T
 
     override fun nextRandomEntry(rand: Rand): T = generate(rand)
+
+
 }
