@@ -16,6 +16,7 @@ import kotlin.reflect.KClass
  * equally probable with a weight of 1.  Entries may have a weight assigned manually, if not, the [selectionStrategy]
  * calculates a weight for them based on their position in the table.
  */
+// TODO: Determine type based on contents?
 class TableGenerator<T: Any>(override val type: KClass<T>,
                              var selectionStrategy: TableSelectionStrategy = FlatSelectionStrategy,
                              vararg initialEntries: Generator<T>

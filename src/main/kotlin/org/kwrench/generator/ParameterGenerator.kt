@@ -18,7 +18,11 @@ class ParameterGenerator<T: Any>(var parameterId: Symbol,
 
     override fun generate(random: Rand, parameters: Map<Symbol, Any>?): T {
         val value = parameters?.get(parameterId) ?: defaultValue
-        return convertToTargetType(value, "parameter $parameterId")
+        return if (value is Generator<*>) {
+            value.generate(random, parameters) as T
+        } else {
+            convertToTargetType(value, "parameter $parameterId")
+        }
     }
 
 }
