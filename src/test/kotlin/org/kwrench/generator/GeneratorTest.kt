@@ -8,6 +8,18 @@ import kotlin.test.assertTrue
 
 class GeneratorTest {
 
+    /* Example
+
+    foo=[asdhais;asdaskd;2:asd;sdas #sadas#sdf]
+    new(tag1, tag2, tag3, structure1, structure2)
+    find(prop=value or prop in [values] or prop like "*value*")
+    select(entries, criteria)..
+
+    structure generator (json -like)
+    gen foo= #bar + {name= #name; desc += some desc; num1 += 1; num2 = #num1 * 2 + #num2 * 3}
+
+     */
+
     @Test
     fun testParse() {
         val parser = GeneratorParser()
